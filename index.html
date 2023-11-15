@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>BudgetApp</title>
+  </head>
+  <body>
+    <div class="contaire">
+      <div class="divDesInput">
+        <div class="title">
+          <h1>EXPENSE TRACKER</h1>
+          <span id="resetLocalStorase">RESET VALUE</span>
+        </div>
+        <div class="vert">
+          <h5>Please enter your budget</h5>
+          <input type="number" id="budget-value" class="input" /><br />
+          <button id="btn-calculate">Calculate</button>
+        </div>
+        <div class="rouge">
+          <h5>Please enter your expense</h5>
+          <input type="text" id="expense-value" class="inputMeme" /><br />
+          <h5>Please enter expense amount</h5>
+          <input
+            type="number"
+            id="expenseAmount-value"
+            class="inputMeme"
+          /><br />
+          <button id="btn-addexpense">Add expense</button>
+        </div>
+      </div>
+      <div class="divDesBudgetEtList">
+        <div class="divDesBudget">
+            <div class="budgetExpenseBalance meme">
+                <span><h2>BUDGET</h2></span>
+                <span><i class="fa-solid fa-money-bill-1"></i></span>
+                <span id="budgetValue">00 F</span>
+            </div>
+            <div class="budgetExpenseBalance">
+                <span><h2>EXPENSE</h2></span>
+                <span><i class="fa-solid fa-money-check"></i></span>
+                <span id="expenseValue">00 F</span>
+            </div>
+            <div class="budgetExpenseBalance meme">
+                <span><h2>BALANCE</h2></span>
+                <span><i class="fa-solid fa-dollar-sign"></i></span>
+                <span id="balanceValue">00 F</span>
+            </div>
+        </div>
+        <div class="listDesDepense">
+            <div class="listTitle">
+                <span class="titre">Expense Title</span>
+                <span class="titre">Expense Amount</span>
+                <span class="titre"><i class="fa-solid fa-gear" style="font-size: 40px;"></i></span>
+            </div>
+            <!-- <div class="listTitleElement">
+                <span class="">Lait</span>
+                <span class="">600 F</span>
+                <span class="" style="display: flex; justify-content: space-around;">
+                    <span id="edit-boutton"><i class="fa-solid fa-pen-to-square" style="color: rgba(0, 255, 60, 0.869); font-size: 18px; margin-right: 10px;"></i></span>
+                    <span id="delet-boutton"><i class="fa-solid fa-trash" style="color: red; font-size: 18px;"></i></span>
+                </span>
+            </div> -->
+        </div>
+      </div>
+      <div class="divDesHistoriqueEtChart">
+        <div class="historique">
+          <button id="history">History</button>
+          <div class="listHistorique">
+            <div class="titleHistorique">
+              <span class="mem">#</span>
+              <span class="mem">Expense title</span>
+              <span class="mem">Expense value</span>
+            </div>
+            <div class="essai">
+              <!-- <div class="titleHistoriqueContenu">
+              <span class="mem">1</span>
+              <span class="mem">Lait</span>
+              <span class="mem">600 F</span>
+            </div> -->
+            </div>
+            <button id="close">Close</button>
+          </div>  
+        </div>
+        <div class="myChart">
+          <canvas id="myChart"></canvas>
+      </div>
+      </div>
+    </div>
+    <div class="notification">
+      <h1>Message</h1><br>
+      <span class="info">azerty</span><br><br>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
