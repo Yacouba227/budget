@@ -10,7 +10,6 @@ const balanceValueDisplay = document.getElementById("balanceValue");
 const notification = document.querySelector(".notification");
 const info = document.querySelector(".info");
 
-
 function condition() {
   info.textContent = "";
   if (
@@ -34,8 +33,8 @@ function condition() {
 }
 function ajout() {
   const ajoutBudgetBalance = JSON.parse(localStorage.getItem("data"));
-  budgetValueDisplay.textContent = ajoutBudgetBalance.budged + ' F';
-  balanceValueDisplay.textContent = ajoutBudgetBalance.balance + ' F';
+  budgetValueDisplay.textContent = ajoutBudgetBalance.budged + " F";
+  balanceValueDisplay.textContent = ajoutBudgetBalance.balance + " F";
 }
 ajout();
 /*LocalStorase*/
@@ -62,14 +61,14 @@ btnValculate.addEventListener("click", () => {
   ajout();
 });
 function ajoutExp() {
-    const ajoutBudgetBalance = JSON.parse(localStorage.getItem("data"));
-    expenseValueDisplay.textContent = ajoutBudgetBalance.expense + ' F';
-    balanceValueDisplay.textContent = ajoutBudgetBalance.balance;
-  }
-  ajoutExp();
-  /*Second localStorase*/
-  let tabVide =JSON.parse(localStorage.getItem("dataExpense")) || [];
-  
+  const ajoutBudgetBalance = JSON.parse(localStorage.getItem("data"));
+  expenseValueDisplay.textContent = ajoutBudgetBalance.expense + " F";
+  balanceValueDisplay.textContent = ajoutBudgetBalance.balance;
+}
+ajoutExp();
+/*Second localStorase*/
+let tabVide = JSON.parse(localStorage.getItem("dataExpense")) || [];
+
 // Vérification de la présence des données dans le stockage local
 if (!localStorage.getItem("dataExpense")) {
   localStorage.setItem("dataExpense", JSON.stringify(tabVide));
@@ -77,21 +76,28 @@ if (!localStorage.getItem("dataExpense")) {
 let listExpense = JSON.parse(localStorage.getItem("dataExpense")) || [];
 btnAddExpense.addEventListener("click", (e) => {
   e.preventDefault();
-    valeur = {
-        budged: Number(tabTout.budged) + Number(budgetValue.value),
-        expense: Number(tabTout.expense) + Number(expenseAmountValue.value),
-        balance: Number(tabTout.balance) + (Number(budgetValue.value) - Number(expenseAmountValue.value)),
-      };
-      localStorage.setItem("data", JSON.stringify(valeur));
-      tabVide.push({
-        expenseTitle: expenseValue.value, 
-        expenseMontant: expenseAmountValue.value
-    });
-      localStorage.setItem("dataExpense", JSON.stringify(tabVide));
+  const existeEl = listExpense.find(el =>el.expenseTitle === expenseValue.value)
+  if (existeEl) {
+    doublon();
+    return
+  }
+  valeur = {
+    budged: Number(tabTout.budged) + Number(budgetValue.value),
+    expense: Number(tabTout.expense) + Number(expenseAmountValue.value),
+    balance:
+      Number(tabTout.balance) +
+      (Number(budgetValue.value) - Number(expenseAmountValue.value)),
+  };
+  localStorage.setItem("data", JSON.stringify(valeur));
+  tabVide.push({
+    expenseTitle: expenseValue.value,
+    expenseMontant: expenseAmountValue.value,
+  });
+  localStorage.setItem("dataExpense", JSON.stringify(tabVide));
   condition2();
   ajoutExp();
-  expenseValue.value = '';
-  expenseAmountValue.value = '';
+  expenseValue.value = "";
+  expenseAmountValue.value = "";
 });
 function condition2() {
   if (
@@ -106,8 +112,7 @@ function condition2() {
     setTimeout(() => {
       notification.style.display = "none";
     }, 3000);
-  }
-  else{
+  } else {
     notification.style.display = "block";
     info.textContent = "Expense ajouter avec succès";
     setTimeout(() => {
@@ -122,36 +127,34 @@ resetLocalStorase.addEventListener("click", () => {
   document.location.reload();
 });
 
-const listDesDepense = document.querySelector('.listDesDepense');
+const listDesDepense = document.querySelector(".listDesDepense");
 function recuperation() {
   let listExpense = JSON.parse(localStorage.getItem("dataExpense"));
-  console.log('type objectFit: ', typeof(listExpense));
-  
+  console.log("type objectFit: ", typeof listExpense);
+
   listExpense.forEach((element, index) => {
-    console.log(element);
-    const divListe = document.createElement('div');
-    divListe.classList.add('listTitleElement');
-    divListe.innerHTML += `<span>${index +1}</span>
+    const divListe = document.createElement("div");
+    divListe.classList.add("listTitleElement");
+    divListe.innerHTML += `<span>${index + 1}</span>
     <span class="">${element.expenseTitle}</span>
   <span class="">${element.expenseMontant} F</span>
   <span class="" style="display: flex; justify-content: end;">
       <span id="edit-boutton"><i class="fa-solid fa-pen-to-square" style="color: rgba(0, 255, 60, 0.869); font-size: 18px;"></i></span>
       <span id="delet-boutton"><i class="fa-solid fa-trash" style="color: red; font-size: 18px;"></i></span>
   </span> </br>`;
-  listDesDepense.appendChild(divListe);
+    listDesDepense.appendChild(divListe);
   });
   //location.reload();
 }
 recuperation();
-const essai = document.querySelector('.essai');
+const essai = document.querySelector(".essai");
 function recuperationHistorique() {
   let listExpense = JSON.parse(localStorage.getItem("dataExpense"));
-  
+
   listExpense.forEach((element, index) => {
-    console.log(element);
-    const divListeHisto = document.createElement('div');
-    divListeHisto.classList.add('titleHistoriqueContenu');
-    divListeHisto.innerHTML += `<span class="mem">${index +1}</span>
+    const divListeHisto = document.createElement("div");
+    divListeHisto.classList.add("titleHistoriqueContenu");
+    divListeHisto.innerHTML += `<span class="mem">${index + 1}</span>
     <span class="mem">${element.expenseTitle}</span>
     <span class="mem">${element.expenseMontant} F</span> </br>`;
     essai.appendChild(divListeHisto);
@@ -159,16 +162,31 @@ function recuperationHistorique() {
 }
 recuperationHistorique();
 /*Cache et faire apparaitre l'historique*/
-const listHistorique = document.querySelector('.listHistorique');
-const history = document.getElementById('history')
-const close = document.getElementById('close')
-history.addEventListener('click', () =>{
-  listHistorique.style.display = 'block'
+const listHistorique = document.querySelector(".listHistorique");
+const history = document.getElementById("history");
+const close = document.getElementById("close");
+history.addEventListener("click", () => {
+  listHistorique.style.display = "block";
 });
-close.addEventListener('click', () =>{
-  listHistorique.style.display = 'none'
-})
+close.addEventListener("click", () => {
+  listHistorique.style.display = "none";
+});
 
 function doublon() {
-  
+  let listExpense = JSON.parse(localStorage.getItem("dataExpense"));
+  if (listExpense.length > 0) {
+    listExpense.forEach((element) => {
+      if (element.expenseTitle === expenseValue.value) {
+        element.expenseMontant =
+          parseInt(element.expenseMontant) + parseInt(expenseAmountValue.value);
+        console.log("arr", listExpense);
+        localStorage.setItem("dataExpense", JSON.stringify(listExpense));
+        ajoutExp();
+        expenseValue.value = "";
+        expenseAmountValue.value = "";
+        return;
+      }
+    });
+  }
+
 }
